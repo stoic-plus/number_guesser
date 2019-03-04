@@ -10,6 +10,9 @@ module.exports = {
   makeGuess: function(guess) {
     this.guesses.push(guess);
   },
+  mostRecentGuess: function() {
+    return this.guesses.slice(-1)[0];
+  },
   evaluate: function(guess) {
     if (guess < this.numToGuess) {
       return "That is too low";

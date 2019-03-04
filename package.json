@@ -1,0 +1,23 @@
+{
+  "name": "number_guesser",
+  "version": "1.0.0",
+  "description": "first JS project Turing School",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha || true"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stoic-plus/number_guesser.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stoic-plus/number_guesser/issues"
+  },
+  "homepage": "https://github.com/stoic-plus/number_guesser#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.0.2"
+  }
+}

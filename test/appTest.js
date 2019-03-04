@@ -15,15 +15,15 @@ describe('App', function(){
   describe('evaluate', function(){
     numToGuess = 5
     it('should return “That is too high” if guess is higher than num', function(){
-      result = app.evaluate(6);
+      result = app.evaluate(6, numToGuess);
       assert.equal(result, "That is too high");
     });
     it('should return "That is too low" if guess is lower than num', function(){
-      result = app.evaluate(4);
+      result = app.evaluate(4, numToGuess);
       assert.equal(result, "That is too low");
     });
     it('should return "BOOM!" if guess is correct', function(){
-      result = app.evaluate(5);
+      result = app.evaluate(5, numToGuess);
       assert.equal(result, "BOOM!");
     });
   });

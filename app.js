@@ -4,7 +4,7 @@ module.exports = {
   },
   init: function(min=1, max=11) {
     this.numToGuess = this.generateGuessNum(min, max);
-    console.log(this.numToGuess);
+    this.guesses = [];
     return this;
   },
   evaluate: function(guess) {

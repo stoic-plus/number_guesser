@@ -51,8 +51,23 @@ describe('App', function(){
         assert.equal(result, "BOOM!");
       });
     });
+    describe('makeGuess()', function(){
+      it('should add a guess to guesses array', function(){
+        const numberGuesser = Object.create(app).init();
+        numberGuesser.makeGuess(4);
+        assert.equal(numberGuesser.guesses, [4])
+      });
+    });
     describe('mostRecentGuess()', function(){
-
+      const numberGuesser = Object.create(app).init();
+      it('should return the only guess', function(){
+        numberGuesser.guesses = [4];
+        assert.equal(numberGuesser.mostRecentGuess(), 4);
+      });
+      it('should return the most recent guess when multiple have been made', function(){
+        numberGuesser.guesses = [4, 12, 53];
+        assert.equal(numberGuesser.mostRecentGuess(), 53);
+      });
     });
   });
 })

@@ -1,6 +1,6 @@
 module.exports = {
-  generateGuessNum: function(min=1, max=11){
-    return Math.floor(Math.random() * (max - min)) + min;
+  generateGuessNum: function(){
+    return Math.floor(Math.random() * (this.max - this.min)) + this.min;
   },
   init: function(min=1, max=11) {
     this.min = min;

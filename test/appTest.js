@@ -25,22 +25,24 @@ describe('App', function(){
     it('should take a custom min and max', function(){
       const numberGuesser = Object.create(app).init(10, 20);
       assert.equal(numberGuesser.min, 10);
-      assert.equal(numberGuesser.max, 20);      
+      assert.equal(numberGuesser.max, 20);
     });
   });
   describe('methods', function(){
     describe('generateGuessNum()', function(){
-      const numberGuesser = Object.create(app).init();
-      it('should return random number within default range given no parameters', function(){
+      it('should return random number within default range', function(){
+        const numberGuesser = Object.create(app).init();
         result = numberGuesser.generateGuessNum();
         assert.isBelow(result, 11);
         assert.isAbove(result, 0);
       });
       it('should return random number below max', function(){
-        result = numberGuesser.generateGuessNum(null, 4);
+        const numberGuesser = Object.create(app).init(null, 4);
+        result = numberGuesser.generateGuessNum();
         assert.isBelow(result, 4);
       });
       it('should return random number >= min', function(){
+        const numberGuesser = Object.create(app).init(4);
         result = numberGuesser.generateGuessNum(4);
         assert.isAbove(result, 3);
       });
@@ -79,12 +81,16 @@ describe('App', function(){
         assert.equal(numberGuesser.mostRecentGuess(), 53);
       });
     });
-    describe('resetGame()', function(){
-      xit('should reset guesses', function(){
-
+    describe('reset()', function(){
+      const numberGuesser = Object.create(app).init();
+      it('should reset guesses', function(){
+        numberGuesser.guesses = [23, 553, 12];
+        numberGuesser.reset();
+        assert.isEmpty(numberGuesser.guesses);
       });
-      xit('should choose a new numToGuess', function(){
-
+      it('should choose a new numToGuess', function(){
+        numberGuesser.numToGuess = 12;
+        numberGuesser.reset();
       });
     });
   });

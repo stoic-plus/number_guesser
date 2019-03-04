@@ -55,7 +55,7 @@ describe('App', function(){
       it('should add a guess to guesses array', function(){
         const numberGuesser = Object.create(app).init();
         numberGuesser.makeGuess(4);
-        assert.equal(numberGuesser.guesses, [4])
+        assert.deepEqual(numberGuesser.guesses, [4])
       });
     });
     describe('mostRecentGuess()', function(){

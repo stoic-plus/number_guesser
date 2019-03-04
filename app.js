@@ -7,6 +7,9 @@ module.exports = {
     this.guesses = [];
     return this;
   },
+  makeGuess: function(guess) {
+    this.guesses.push(guess);
+  },
   evaluate: function(guess) {
     if (guess < this.numToGuess) {
       return "That is too low";

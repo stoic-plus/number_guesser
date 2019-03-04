@@ -17,6 +17,16 @@ describe('App', function(){
       const numberGuesser = Object.create(app).init();
       assert.isEmpty(numberGuesser.guesses);
     });
+    it('should have a default min and max', function(){
+      const numberGuesser = Object.create(app).init();
+      assert.equal(numberGuesser.min, 1);
+      assert.equal(numberGuesser.max, 11);
+    });
+    it('should take a custom min and max', function(){
+      const numberGuesser = Object.create(app).init(10, 20);
+      assert.equal(numberGuesser.min, 10);
+      assert.equal(numberGuesser.max, 20);      
+    });
   });
   describe('methods', function(){
     describe('generateGuessNum()', function(){
@@ -67,6 +77,14 @@ describe('App', function(){
       it('should return the most recent guess when multiple have been made', function(){
         numberGuesser.guesses = [4, 12, 53];
         assert.equal(numberGuesser.mostRecentGuess(), 53);
+      });
+    });
+    describe('resetGame()', function(){
+      xit('should reset guesses', function(){
+
+      });
+      xit('should choose a new numToGuess', function(){
+
       });
     });
   });

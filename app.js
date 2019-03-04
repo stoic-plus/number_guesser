@@ -3,6 +3,8 @@ module.exports = {
     return Math.floor(Math.random() * (max - min)) + min;
   },
   init: function(min=1, max=11) {
+    this.min = min;
+    this.max = max;
     this.numToGuess = this.generateGuessNum(min, max);
     this.guesses = [];
     return this;

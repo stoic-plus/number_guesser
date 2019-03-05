@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Number Guesser</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1><span class="title-main">Number</span> <span class="title-sub">Guesser</span></h1>
+      </header>
+      <section>
+        <input type="number" id="guess-input" placeholder="Enter a guess"><br />
+        <button type="button" id="make-guess">Guess</button>
+        <button type="button" id="clear-guess">Clear</button><br />
+        <div class="feedback">
+          <p>Your last guess was</p>
+          <p id="guess-input"></p>
+          <p id="guess-evaluate"></p>
+        </div>
+        <button type="button" id="reset">Reset</button>
+      </section>
+    </main>
+    <script type="text/javascript" src="index.js"/>
+  </body>
+</html>

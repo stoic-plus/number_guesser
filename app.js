@@ -33,8 +33,10 @@ module.exports = {
       return "BOOM!";
     }
   },
-  reset: function() {
+  reset: function(min=1, max=11) {
     this.guesses = [];
+    this.min = min;
+    this.max = max;
     this.numToGuess = this.generateGuessNum();
   },
   checkGuess: function(guess) {

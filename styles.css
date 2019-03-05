@@ -1,0 +1,57 @@
+html {
+  --main-gray: #404041;
+  --tile-main: #ED458B;
+  --title-sub: #E6E7E8;
+  --btn-default-back: #929497;
+  --btn-disabled-back: #D0D2D3;
+  --info-alert-pink: #EB008B;
+  --btn-text: #FFFFFF;
+  --bold: 700;
+  --light: 300;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  font-family: 'Open Sans', sans-serif;
+}
+
+main {
+  margin: 2rem auto;
+  width: 80vw;
+  text-align: center;
+  border: 1px solid #504F2F;
+}
+
+header {
+  width: 100%;
+  background-color: var(--main-gray);
+  color: white;
+}
+
+button {
+  border-radius: 10px;
+  background-color: var(--btn-default-back);
+  margin: 5px;
+  color: var(--btn-text);
+}
+
+button:hover {
+  background-color: var(--info-alert-pink);
+}
+
+.btn-disabled {
+  background-color: var(--btn-disabled-back);
+}
+
+.title-main {
+  color: var(--tile-main);
+}
+
+.title-sub {
+  color: var(--title-sub);
+}
+
+.feedback {
+  visibility: hidden;
+}

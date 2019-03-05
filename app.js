@@ -11,7 +11,14 @@ module.exports = {
   },
   makeGuess: function(guess) {
     this.guesses.push(guess);
+    if (guess === this.numToGuess) {
+      this.increaseRange();
+    }
     return this.evaluate(guess);
+  },
+  increaseRange: function() {
+    this.min -= 10;
+    this.max += 10;
   },
   mostRecentGuess: function() {
     return this.guesses.slice(-1)[0];

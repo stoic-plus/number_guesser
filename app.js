@@ -11,6 +11,7 @@ module.exports = {
   },
   makeGuess: function(guess) {
     this.guesses.push(guess);
+    this.checkGuess(guess);
     if (guess === this.numToGuess) {
       this.increaseRange();
     }
@@ -36,7 +37,14 @@ module.exports = {
     this.guesses = [];
     this.numToGuess = this.generateGuessNum();
   },
-  outOfRange?(guess) {
+  checkGuess: function(guess) {
+    if (!Number.isInteger(guess)) {
+      throw new TypeError('Guess must be an integer');
+    } else if (this.outOfRange(guess)) {
+      throw new RangeError('Number is outside specified range');
+    }
+  },
+  outOfRange: function(guess) {
     return guess > this.max || guess < this.min;
   }
 }

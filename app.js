@@ -11,6 +11,7 @@ module.exports = {
   },
   makeGuess: function(guess) {
     this.guesses.push(guess);
+    return this.evaluate(guess);
   },
   mostRecentGuess: function() {
     return this.guesses.slice(-1)[0];

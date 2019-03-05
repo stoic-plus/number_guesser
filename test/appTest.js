@@ -1,4 +1,6 @@
-const assert = require('chai').assert;
+const chai = require('chai'), spies = require('chai-spies');
+chai.use(spies);
+const should = chai.should(), expect = chai.expect, assert = chai.assert;
 const app = require('../app');
 
 describe('App', function(){
@@ -64,10 +66,18 @@ describe('App', function(){
       });
     });
     describe('makeGuess()', function(){
+      const numberGuesser = Object.create(app).init(5, 10);
+      numberGuesser.numToGuess = 5;
       it('should add a guess to guesses array', function(){
-        const numberGuesser = Object.create(app).init();
         numberGuesser.makeGuess(4);
         assert.deepEqual(numberGuesser.guesses, [4])
+      });
+      it('should call evaluate with guess', function(){
+        const spy = chai.spy.on(numberGuesser, 'evaluate');
+        evaluation = numberGuesser.makeGuess(4);
+        assert.equal(evaluation, "That is too low");
+        expect(spy).to.have.been.called.with(4);
+        chai.spy.restore();
       });
     });
     describe('mostRecentGuess()', function(){
@@ -93,7 +103,7 @@ describe('App', function(){
         numberGuesser.min = 5
         numberGuesser.max = 10
         numberGuesser.reset();
-        assert.notEqual(numberGuesser.numToGuess, 12);        
+        assert.notEqual(numberGuesser.numToGuess, 12);
       });
     });
   });

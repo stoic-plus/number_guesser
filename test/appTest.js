@@ -93,10 +93,13 @@ describe('App', function(){
         chai.spy.restore();
       });
       it('should throw a RangeError if guess is out of range', function(){
-        assert.throws(numberGuesser.makeGuess(5), RangeError, 'Number is outside specified range');
+        numberGuesser.min = 10;
+        numberGuesser.max = 20;
+        assert.throws(numberGuesser.makeGuess.bind(numberGuesser, 5), RangeError, 'Number is outside specified range');
+        assert.throws(numberGuesser.makeGuess.bind(numberGuesser, 22), RangeError, 'Number is outside specified range');
       });
       it('should throw a TypeError if guess is not a number', function(){
-        assert.throws(numberGuesser.makeGuess('12'), TypeError, 'Guess must be a numeric');
+        assert.throws(numberGuesser.makeGuess.bind(numberGuesser, '12'), TypeError, 'Guess must be an integer');
       });
     });
     describe('increaseRange()', function(){

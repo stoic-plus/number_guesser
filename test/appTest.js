@@ -30,20 +30,20 @@ describe('App', function(){
   });
   describe('methods', function(){
     describe('generateGuessNum()', function(){
+      const numberGuesser = Object.create(app).init();
       it('should return random number within default range', function(){
-        const numberGuesser = Object.create(app).init();
         result = numberGuesser.generateGuessNum();
         assert.isBelow(result, 11);
         assert.isAbove(result, 0);
       });
       it('should return random number below max', function(){
-        const numberGuesser = Object.create(app).init(null, 4);
+        numberGuesser.max = 4;
         result = numberGuesser.generateGuessNum();
         assert.isBelow(result, 4);
       });
       it('should return random number >= min', function(){
-        const numberGuesser = Object.create(app).init(4);
-        result = numberGuesser.generateGuessNum(4);
+        numberGuesser.min = 4
+        result = numberGuesser.generateGuessNum();
         assert.isAbove(result, 3);
       });
     });
@@ -90,7 +90,10 @@ describe('App', function(){
       });
       it('should choose a new numToGuess', function(){
         numberGuesser.numToGuess = 12;
+        numberGuesser.min = 5
+        numberGuesser.max = 10
         numberGuesser.reset();
+        assert.notEqual(numberGuesser.numToGuess, 12);        
       });
     });
   });

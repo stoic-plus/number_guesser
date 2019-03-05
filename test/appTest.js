@@ -79,6 +79,19 @@ describe('App', function(){
         expect(spy).to.have.been.called.with(4);
         chai.spy.restore();
       });
+      it('should update range when guess is correct', function(){
+        assert.equal(numberGuesser.min, 5);
+        assert.equal(numberGuesser.max, 10);
+
+        evaluation = numberGuesser.makeGuess(5);
+        const spy = chai.spy.on(numberGuesser, 'resetRange');
+
+        assert.equal(evaluation, "BOOM!");
+        assert.equal(numberGuesser.min, -5);
+        assert.equal(numberGuesser.max, 20);
+        expect(spy).to.have.been.called();
+        chai.spy.restore();
+      });
     });
     describe('mostRecentGuess()', function(){
       const numberGuesser = Object.create(app).init();

@@ -66,31 +66,45 @@ describe('App', function(){
       });
     });
     describe('makeGuess()', function(){
-      const numberGuesser = Object.create(app).init(5, 10);
-      numberGuesser.numToGuess = 5;
+      const numberGuesser = Object.create(app).init(10, 20);
+      numberGuesser.numToGuess = 15;
       it('should add a guess to guesses array', function(){
-        numberGuesser.makeGuess(4);
-        assert.deepEqual(numberGuesser.guesses, [4])
+        numberGuesser.makeGuess(14);
+        assert.deepEqual(numberGuesser.guesses, [14])
       });
       it('should call evaluate with guess', function(){
         const spy = chai.spy.on(numberGuesser, 'evaluate');
-        evaluation = numberGuesser.makeGuess(4);
+        evaluation = numberGuesser.makeGuess(14);
         assert.equal(evaluation, "That is too low");
-        expect(spy).to.have.been.called.with(4);
+        expect(spy).to.have.been.called.with(14);
         chai.spy.restore();
       });
       it('should increase range when guess is correct', function(){
-        assert.equal(numberGuesser.min, 5);
-        assert.equal(numberGuesser.max, 10);
+        assert.equal(numberGuesser.min, 10);
+        assert.equal(numberGuesser.max, 20);
 
         const spy = chai.spy.on(numberGuesser, 'increaseRange');
-        evaluation = numberGuesser.makeGuess(5);
+        evaluation = numberGuesser.makeGuess(15);
 
         assert.equal(evaluation, "BOOM!");
-        assert.equal(numberGuesser.min, -5);
-        assert.equal(numberGuesser.max, 20);
+        assert.equal(numberGuesser.min, 0);
+        assert.equal(numberGuesser.max, 30);
         expect(spy).to.have.been.called();
         chai.spy.restore();
+      });
+      it('should throw a RangeError if guess is out of range', function(){
+        assert.throws(numberGuesser.makeGuess(5), RangeError, 'Number is outside specified range');
+      });
+      it('should throw a TypeError if guess is not a number', function(){
+        assert.throws(numberGuesser.makeGuess('12'), TypeError, 'Guess must be a numeric');
+      });
+    });
+    describe('increaseRange()', function(){
+      it('decreases min by 10 and increases max by 10', function(){
+        const numberGuesser = Object.create(app).init(5, 10);
+        numberGuesser.increaseRange();
+        assert.equal(numberGuesser.min, -5);
+        assert.equal(numberGuesser.max, 20);
       });
     });
     describe('mostRecentGuess()', function(){

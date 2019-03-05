@@ -35,5 +35,8 @@ module.exports = {
   reset: function() {
     this.guesses = [];
     this.numToGuess = this.generateGuessNum();
+  },
+  outOfRange?(guess) {
+    return guess > this.max || guess < this.min;
   }
 }

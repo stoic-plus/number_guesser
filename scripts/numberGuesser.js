@@ -53,7 +53,7 @@ define(function() {
       }
     },
     outOfRange: function(guess) {
-      return guess > this.max || guess < this.min;
+      return guess > this.max - 1 || guess < this.min;
     }
   }
 })

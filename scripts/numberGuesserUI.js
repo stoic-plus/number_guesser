@@ -1,4 +1,5 @@
 define(function() {
+  const dom = require('domSelectors');
   return {
     checkNoGuess: function(domElement) {
       if (domElement.value === '') {
@@ -6,21 +7,47 @@ define(function() {
         return true;
       }
     },
-    tempDisplay: function(domElement, message) {
-      domElement.classList.remove('hidden');
-      domElement.innerText = message;
+    tempDisplay: function(message) {
+      dom.tempDisplay.classList.remove('hidden');
+      dom.tempDisplay.innerText = message;
       window.setTimeout(() => {
-        domElement.innerText = '';
-        domElement.classList.add('hidden');
+        dom.tempDisplay.innerText = '';
+        dom.tempDisplay.classList.add('hidden');
       }, 3000);
     },
-    showFeedback: function(lastGuessDom, lastGuess, feedbackDom, feedback) {
-      lastGuessDom.innerText = lastGuess;
-      feedbackDom.innerText = feedback;
+    startGame: function(min, max) {
+      dom.rangeForm.classList.add('removed');
+      this.clearRangeForm();
+      dom.gameUI.classList.remove('removed');
+      this.setRange(min, max);
     },
-    setRange: function(minDom, maxDom, min, max) {
-      minDom.innerText = min;
-      maxDom.innerText = max;
+    resetGame: function() {
+      this.clearGameUI();
+      dom.gameUI.classList.add('removed');
+      dom.rangeForm.classList.remove('removed');
+    },
+    clearRangeForm: function() {
+      dom.minRange.value = '';
+      dom.maxRange.value = '';
+    },
+    clearGameUI: function() {
+      dom.guessInput.value = '';
+      dom.lastGuess.innerText = '';
+      dom.guessEval.innerText = '';
+    },
+    clearGuess: function() {
+      dom.guessInput.value = '';
+    },
+    showFeedback: function(lastGuess, correct_guess, feedback) {
+      dom.lastGuess.innerText = lastGuess;
+      dom.guessEval.innerText = feedback;
+      if (correct_guess) {
+        this.tempDisplay("Correct! Range has been updated - extra ten on either side");
+      }
+    },
+    setRange: function(min, max) {
+      dom.minRangeDisplay.innerText = min;
+      dom.maxRangeDisplay.innerText = max;
     }
   }
 })

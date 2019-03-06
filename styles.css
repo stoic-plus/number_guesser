@@ -52,6 +52,16 @@ button:hover {
   color: var(--title-sub);
 }
 
+.range-rules, .temp-display {
+  background-color: var(--main-gray);
+  color: var(--btn-text);
+  font-style: italic;
+}
+
+.guess-last {
+  color: var(--info-alert-pink);
+}
+
 .hidden {
   visibility: hidden;
 }

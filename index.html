@@ -10,18 +10,34 @@
       <header>
         <h1><span class="title-main">Number</span> <span class="title-sub">Guesser</span></h1>
       </header>
-      <section>
+
+      <section class='range-form' id="range-form">
+        <h3>Select Your Range: </h3>
+        <div class="range-rules" id="range-rules">
+          <p>enter min and/or max or leave both empty</p>
+          <p>defaults are 1 and 11</p>
+        </div>
+        <label for="">From: </label>
+        <input type="number" id="min-range" placeholder="minimum (inclusive)"><br>
+        <label for="max-range">To: </label>
+        <input type="number" id="max-range" placeholder="maximum (exclusive)"><br>
+        <button type="button" id="range-submit">Submit</button>
+      </section>
+
+      <section class='removed' id="gameUI">
+        <p>Minimum: <span id="min-range-display"></span >, Maximum: <span id="max-range-display"></span></p>
+        <p class="hidden temp-display" id="temp-display"></p>
         <input type="number" id="guess-input" placeholder="Enter a guess"><br />
         <button type="button" id="make-guess">Guess</button>
         <button type="button" id="clear-guess">Clear</button><br />
-        <div class="feedback">
+        <div class="feedback hidden" id="feedback">
           <p>Your last guess was</p>
-          <p id="guess-input"></p>
+          <p class="guess-last" id="guess-last"></p>
           <p id="guess-evaluate"></p>
         </div>
         <button type="button" id="reset">Reset</button>
       </section>
     </main>
-    <script type="text/javascript" src="index.js"/>
+    <script data-main="app" src="./scripts/require.js"></script>
   </body>
 </html>

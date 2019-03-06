@@ -13,10 +13,15 @@ define(function() {
     makeGuess: function(guess) {
       this.guesses.push(guess);
       this.checkGuess(guess);
+      correct_guess = false
       if (guess === this.numToGuess) {
         this.increaseRange();
+        correct_guess = true;
       }
-      return this.evaluate(guess);
+      return {
+        correct_guess,
+        eval: this.evaluate(guess)
+      }
     },
     increaseRange: function() {
       this.min -= 10;
@@ -34,7 +39,7 @@ define(function() {
         return "BOOM!";
       }
     },
-    reset: function(min=1, max=11) {
+    newGame: function(min=1, max=11) {
       this.guesses = [];
       this.min = min;
       this.max = max;

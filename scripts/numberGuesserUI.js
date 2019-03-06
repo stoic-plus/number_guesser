@@ -37,8 +37,10 @@ define(function() {
     },
     clearGuess: function() {
       dom.guessInput.value = '';
+      dom.clearGuess.classList.add('disabled');
     },
     showFeedback: function(lastGuess, correct_guess, feedback) {
+      dom.clearGuess.classList.remove('disabled');
       dom.lastGuess.innerText = lastGuess;
       dom.guessEval.innerText = feedback;
       if (correct_guess) {

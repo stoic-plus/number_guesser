@@ -68,3 +68,7 @@ button:hover {
 .removed {
   display: none;
 }
+
+.disabled {
+  background-color: var(--btn-disabled-back);
+}

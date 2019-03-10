@@ -1,5 +1,8 @@
+// requiring in external libraries
 const chai = require('chai'), spies = require('chai-spies');
+// from docs
 chai.use(spies);
+// kind of like creating interfaces for certain functions on chai - saving those functions to variables
 const should = chai.should(), expect = chai.expect, assert = chai.assert;
 const app = require('../app');
 
@@ -82,19 +85,22 @@ describe('App', function(){
       it('should increase range when guess is correct', function(){
         assert.equal(numberGuesser.min, 10);
         assert.equal(numberGuesser.max, 20);
-
+        // spying on the increaseRange function on numberGuesser
         const spy = chai.spy.on(numberGuesser, 'increaseRange');
         evaluation = numberGuesser.makeGuess(15);
 
         assert.equal(evaluation, "BOOM!");
         assert.equal(numberGuesser.min, 0);
         assert.equal(numberGuesser.max, 30);
+        // expect spied function to have been called - then restore it's expects
         expect(spy).to.have.been.called();
         chai.spy.restore();
       });
       it('should throw a RangeError if guess is out of range', function(){
         numberGuesser.min = 10;
         numberGuesser.max = 20;
+        // throws must be passed a function - not the return from a function - because bind returns a copy of a function with this and params set
+          // perfect use case
         assert.throws(numberGuesser.makeGuess.bind(numberGuesser, 5), RangeError, 'Number is outside specified range');
         assert.throws(numberGuesser.makeGuess.bind(numberGuesser, 22), RangeError, 'Number is outside specified range');
       });

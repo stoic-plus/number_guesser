@@ -1,5 +1,8 @@
 define(function() {
+  // this module is used to dry up code, so these selectors are not repeated.
   return {
+    // getElementById is called on the document and takes an id to find an elementy by
+      // returns the element itself. Well kind of (Virtual DOM - an object that represents the DOM)
     guessInput: document.getElementById('guess-input'),
     makeGuess: document.getElementById('make-guess'),
     clearGuess: document.getElementById('clear-guess'),
